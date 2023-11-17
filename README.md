@@ -15,6 +15,7 @@
       <br> $\to$ 사진 등록은 amazon s3 이용
       <br> $\to$ 위치는 위도/경도(좌표)와 텍스트(주소) 등록, 캐싱하여 저장
       <br> $\to$ 매물 정보에는 층, 주차 가능 여부, 엘리베이터 여부, 관리비, 옵션 정보 등 작성
+    * 매물의 사진은 1개만 등록 가능하다.   
 * 매물 수정
     * 매물 수정은 중개인만 할 수 있다.
 * 매물 삭제
@@ -49,7 +50,7 @@
     * 로그인을 한 일반 사용자가 선택한 매물의 중개인과 채팅이 가능하다. <br> $\to$ Websocket + stomp 사용      
  
 ## ERD
-![real-estate](https://github.com/LeeHyejin14/real-estate/assets/57497745/9195c818-a8a5-4047-bf7c-301d6a36e059)
+![real-estate](https://github.com/LeeHyejin14/real-estate/assets/57497745/37318764-da1a-4081-b1f4-6b4b19c2813d)
 
 ## Tech Stack
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
