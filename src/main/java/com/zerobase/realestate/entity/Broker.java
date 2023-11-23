@@ -16,11 +16,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Broker {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long userKey;
+  private Long brokerKey;
 
   private String id;
 
@@ -29,5 +29,7 @@ public class User {
   private String name;
 
   private String phoneNumber;
+
+  private String address;
 
 }

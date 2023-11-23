@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class UserDto {
+public class BrokerDto {
 
   @Getter
   @AllArgsConstructor
@@ -14,6 +14,7 @@ public class UserDto {
     private String password;
     private String name;
     private String phoneNumber;
+    private String address;
   }
 
 }
