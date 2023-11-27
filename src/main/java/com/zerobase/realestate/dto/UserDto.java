@@ -27,4 +27,12 @@ public class UserDto {
     private String address;
   }
 
+  @Getter
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public static class SignInRequest{
+    private String id;
+    private String password;
+  }
+
 }
