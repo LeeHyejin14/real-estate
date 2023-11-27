@@ -1,6 +1,7 @@
 package com.zerobase.realestate.service;
 
-import com.zerobase.realestate.dto.UserDto.SignUpRequest;
+import com.zerobase.realestate.dto.UserDto.BrokerSignUpRequest;
+import com.zerobase.realestate.dto.UserDto.UserSignUpRequest;
 import com.zerobase.realestate.entity.User;
 import com.zerobase.realestate.repository.UserRepository;
 import javax.transaction.Transactional;
@@ -18,7 +19,7 @@ public class UserService {
   private final UserRepository userRepository;
 
   @Transactional
-  public void signUp(SignUpRequest request) {
+  public void userSignUp(UserSignUpRequest request) {
     if (userRepository.existsById(request.getId())) {
       throw new DuplicateKeyException("아이디가 이미 존재합니다.");
     }
@@ -29,6 +30,24 @@ public class UserService {
             BCrypt.gensalt()))
         .name(request.getName())
         .phoneNumber(request.getPhoneNumber())
+        .build();
+
+    userRepository.save(user);
+  }
+
+  @Transactional
+  public void brokerSignUp(BrokerSignUpRequest request) {
+    if (userRepository.existsById(request.getId())) {
+      throw new DuplicateKeyException("아이디가 이미 존재합니다.");
+    }
+
+    User user = User.builder()
+        .id(request.getId())
+        .password(BCrypt.hashpw(request.getPassword(),
+            BCrypt.gensalt()))
+        .name(request.getName())
+        .phoneNumber(request.getPhoneNumber())
+        .address(request.getAddress())
         .build();
 
     userRepository.save(user);
