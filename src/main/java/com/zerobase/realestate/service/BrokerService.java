@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class BrokerService {
 
   private final BrokerRepository brokerRepository;
-  private final PasswordEncoder passwordEncoder;
 
   @Transactional
   public void signUp(SignUpRequest request) {
@@ -26,7 +25,8 @@ public class BrokerService {
 
     Broker broker = Broker.builder()
         .id(request.getId())
-        .password(passwordEncoder.encode(request.getPassword()))
+        .password(BCrypt.hashpw(request.getPassword(),
+            BCrypt.gensalt()))
         .name(request.getName())
         .phoneNumber(request.getPhoneNumber())
         .address(request.getAddress())
