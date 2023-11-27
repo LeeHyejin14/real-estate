@@ -9,11 +9,22 @@ public class UserDto {
   @Getter
   @AllArgsConstructor
   @NoArgsConstructor
-  public static class SignUpRequest {
+  public static class UserSignUpRequest {
     private String id;
     private String password;
     private String name;
     private String phoneNumber;
+  }
+
+  @Getter
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public static class BrokerSignUpRequest {
+    private String id;
+    private String password;
+    private String name;
+    private String phoneNumber;
+    private String address;
   }
 
 }
