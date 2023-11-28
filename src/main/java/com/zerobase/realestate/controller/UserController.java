@@ -1,7 +1,9 @@
 package com.zerobase.realestate.controller;
 
 import com.zerobase.realestate.dto.UserDto.BrokerSignUpRequest;
+import com.zerobase.realestate.dto.UserDto.SignInRequest;
 import com.zerobase.realestate.dto.UserDto.UserSignUpRequest;
+import com.zerobase.realestate.security.dto.JwtTokenDto;
 import com.zerobase.realestate.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,11 @@ public class UserController {
     userService.brokerSignUp(request);
 
     return ResponseEntity.ok().build();
+  }
+
+  @PostMapping(value = "/signin")
+  public ResponseEntity<JwtTokenDto> signIn(@RequestBody SignInRequest request) {
+    return ResponseEntity.ok(userService.signIn(request));
   }
 
 }

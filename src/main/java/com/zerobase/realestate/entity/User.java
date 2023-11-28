@@ -32,4 +32,10 @@ public class User {
 
   private String address;
 
+  private String refreshToken;
+
+  public void updateRefreshToken(String updateRefreshToken) {
+    this.refreshToken = updateRefreshToken;
+  }
+
 }
