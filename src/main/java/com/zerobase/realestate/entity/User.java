@@ -1,6 +1,9 @@
 package com.zerobase.realestate.entity;
 
+import com.zerobase.realestate.enums.Role;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +34,9 @@ public class User {
   private String phoneNumber;
 
   private String address;
+
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
   private String refreshToken;
 
