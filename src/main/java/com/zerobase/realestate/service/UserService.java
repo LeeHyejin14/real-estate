@@ -57,6 +57,7 @@ public class UserService {
     userRepository.save(user);
   }
 
+  @Transactional
   public JwtTokenDto signIn(SignInRequest request) {
     User user = userRepository.findById(request.getId())
         .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
@@ -67,7 +68,7 @@ public class UserService {
 
     String refreshToken = jwtTokenProvider.createRefreshToken();
 
-    jwtTokenProvider.updateRefreshToken(user.getId(), refreshToken);
+    user.setRefreshToken(refreshToken);
 
     return JwtTokenDto.createJwtToken(jwtTokenProvider.createAccessToken(user.getUserKey()), refreshToken);
   }

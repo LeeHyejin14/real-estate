@@ -1,7 +1,5 @@
 package com.zerobase.realestate.security.service;
 
-import com.zerobase.realestate.entity.User;
-import com.zerobase.realestate.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -9,28 +7,16 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
-import java.util.Optional;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-@Getter
 public class JwtTokenProvider {
 
-  private Key key;
+  private String secretKey = "236979CB6F1AD6B6A6184A31E6BE37DB3818CC36871E26235DD67DCFE4041492";
 
-  private final UserRepository userRepository;
-
-  public JwtTokenProvider(@Value("${jwt.secret}") String secretKey, UserRepository userRepository) {
-    byte[] bytes = Decoders.BASE64.decode(secretKey);
-    this.key = Keys.hmacShaKeyFor(bytes);
-
-    this.userRepository = userRepository;
-  }
+  private final Key key = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(secretKey));
 
   public static final String USER_KEY = "userKey";
 
@@ -51,16 +37,6 @@ public class JwtTokenProvider {
         .signWith(key, SignatureAlgorithm.HS256)
         .compact();
 
-  }
-
-  /**
-   * RefreshToken DB 저장(업데이트)
-   */
-  @Transactional
-  public void updateRefreshToken(String id, String refreshToken) {
-    Optional<User> userOptional = userRepository.findById(id);
-    User user = userOptional.get();
-    user.updateRefreshToken(refreshToken);
   }
 
   /**
