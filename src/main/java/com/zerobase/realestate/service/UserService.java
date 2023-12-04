@@ -4,6 +4,7 @@ import com.zerobase.realestate.dto.UserDto.BrokerSignUpRequest;
 import com.zerobase.realestate.dto.UserDto.SignInRequest;
 import com.zerobase.realestate.dto.UserDto.UserSignUpRequest;
 import com.zerobase.realestate.entity.User;
+import com.zerobase.realestate.enums.Role;
 import com.zerobase.realestate.repository.UserRepository;
 import com.zerobase.realestate.security.dto.JwtTokenDto;
 import com.zerobase.realestate.security.service.JwtTokenProvider;
@@ -34,6 +35,7 @@ public class UserService {
             BCrypt.gensalt()))
         .name(request.getName())
         .phoneNumber(request.getPhoneNumber())
+        .role(Role.USER)
         .build();
 
     userRepository.save(user);
@@ -52,6 +54,7 @@ public class UserService {
         .name(request.getName())
         .phoneNumber(request.getPhoneNumber())
         .address(request.getAddress())
+        .role(Role.BROKER)
         .build();
 
     userRepository.save(user);
