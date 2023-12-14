@@ -2,7 +2,6 @@ package com.zerobase.realestate.service;
 
 import com.zerobase.realestate.dto.ProductDto.request;
 import com.zerobase.realestate.entity.Product;
-import com.zerobase.realestate.enums.Type;
 import com.zerobase.realestate.repository.ProductRepository;
 import com.zerobase.realestate.util.RandomStringMaker;
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class ProductService {
         .address(request.getAddress())
         .latitude(request.getLatitude())
         .longitude(request.getLongitude())
-        .type(Type.valueOf(request.getType()))
+        .type(request.getType())
         .area(request.getArea())
         .price(request.getPrice())
         .build();
@@ -53,7 +52,7 @@ public class ProductService {
     product.setAddress(request.getAddress());
     product.setLatitude(request.getLatitude());
     product.setLongitude(request.getLongitude());
-    product.setType(Type.valueOf(request.getType()));
+    product.setType(request.getType());
     product.setArea(request.getArea());
     product.setPrice(request.getPrice());
 
@@ -66,6 +65,10 @@ public class ProductService {
   public void deleteProduct(Long productKey) {
     Product product = productRepository.findById(productKey)
         .orElseThrow(() -> new RuntimeException("해당 매물이 존재하지 않습니다."));
+
+    if (product.getDeletionDate() != null) {
+      throw new RuntimeException("삭제된 매물입니다.");
+    }
 
     product.setDeletionDate(LocalDateTime.now());
 

@@ -23,7 +23,7 @@ public class ProductController {
   private final ProductService productService;
 
   // 매물 등록
-  @PostMapping(value = "/add")
+  @PostMapping
   public ResponseEntity<Void> addProduct(@RequestPart request request,
       @RequestPart(value = "file", required = false) MultipartFile imageFile) {
     productService.addProduct(request, imageFile);

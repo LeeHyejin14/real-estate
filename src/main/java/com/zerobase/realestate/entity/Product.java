@@ -54,7 +54,7 @@ public class Product {
   private String storageUrl;
 
   @CreatedDate
-  private LocalDateTime registrationDate;
+  private LocalDateTime registrationDateTime;
 
   private LocalDateTime revisedDate;
 

@@ -1,5 +1,6 @@
 package com.zerobase.realestate.dto;
 
+import com.zerobase.realestate.enums.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class ProductDto {
     private String address;
     private String latitude;
     private String longitude;
-    private String type;
+    private Type type;
     private int area;
     private int price;
     private String storageUrl;

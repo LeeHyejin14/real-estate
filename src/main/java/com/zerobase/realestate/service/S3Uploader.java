@@ -31,7 +31,6 @@ public class S3Uploader {
         }
 
         // 업로드된 파일의 URL 생성
-        String fileUrl = amazonS3.getUrl(bucketName, fileName).toString();
-        return fileUrl;
+        return amazonS3.getUrl(bucketName, fileName).toString();
     }
 }
