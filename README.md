@@ -50,7 +50,7 @@
     * 로그인을 한 일반 사용자가 선택한 매물의 중개인과 채팅이 가능하다. <br> $\to$ Websocket + stomp 사용      
  
 ## ERD
-![real-estate](https://github.com/LeeHyejin14/real-estate/assets/57497745/37318764-da1a-4081-b1f4-6b4b19c2813d)
+![real-estate](https://github.com/LeeHyejin14/real-estate/assets/57497745/f920cfc8-d063-49f6-98cb-0ecf935ff1b6)
 
 ## Tech Stack
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
