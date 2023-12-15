@@ -1,5 +1,6 @@
 package com.zerobase.realestate.service;
 
+import com.zerobase.realestate.dto.ProductDto.SearchResponse;
 import com.zerobase.realestate.dto.ProductDto.request;
 import com.zerobase.realestate.entity.Product;
 import com.zerobase.realestate.repository.ProductRepository;
@@ -73,6 +74,17 @@ public class ProductService {
     product.setDeletionDate(LocalDateTime.now());
 
     productRepository.save(product);
+  }
+
+  public SearchResponse searchByKey(Long productKey) {
+    Product product = productRepository.findById(productKey)
+        .orElseThrow(() -> new RuntimeException("해당 매물이 존재하지 않습니다."));
+
+    if (product.getDeletionDate() != null) {
+      throw new RuntimeException("삭제된 매물입니다.");
+    }
+
+    return new SearchResponse(product);
   }
 
   private void uploadImage(Product product, MultipartFile imageFile){
