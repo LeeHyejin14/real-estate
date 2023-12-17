@@ -1,11 +1,13 @@
 package com.zerobase.realestate.controller;
 
+import com.zerobase.realestate.dto.ProductDto.SearchResponse;
 import com.zerobase.realestate.dto.ProductDto.request;
 import com.zerobase.realestate.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -43,6 +45,12 @@ public class ProductController {
   public ResponseEntity<Void> deleteGroup(@PathVariable Long productKey) {
     productService.deleteProduct(productKey);
     return ResponseEntity.ok().build();
+  }
+
+  // 매물 등록번호 검색 조회
+  @GetMapping("/{productKey}")
+  public ResponseEntity<SearchResponse> searchByKeyword(@PathVariable Long productKey) {
+    return ResponseEntity.ok(productService.searchByKey(productKey));
   }
 
 }
